@@ -1,3 +1,4 @@
+#command.py
 import pyttsx3
 import speech_recognition as sr
 import eel
@@ -14,18 +15,32 @@ def speak(text):
 def takecommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Listening...")
+        print('Listening...')
+        eel.DisplayMessage('Listening...')
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source)
-        audio = r.listen(source, 10, 6)
+        try:
+            audio = r.listen(source, timeout=10, phrase_time_limit=6)
+        except Exception as e:
+            print(f"Error in listening: {e}")
+            eel.DisplayMessage(f"Error in listening: {e}")
+            return ""
+    
     try:
-        print("Recognizing...")
+        print('Recognizing...')
+        eel.DisplayMessage('Recognizing...')
         query = r.recognize_google(audio, language='en-in')
-        print(f"User said: {query}\n")
+        print(f"User said: {query}")
+        eel.DisplayMessage(query)
         speak(query)
+        return query.lower()
+    except sr.UnknownValueError:
+        print("Google Speech Recognition could not understand audio")
+        eel.DisplayMessage("Could not understand audio")
+    except sr.RequestError as e:
+        print(f"Could not request results from Google Speech Recognition service; {e}")
+        eel.DisplayMessage(f"Could not request results; {e}")
     except Exception as e:
-        return ""
-    return query.lower()
-
-# text = takecommand()
-# speak(text)
+        print(f"Error during recognition: {e}")
+        eel.DisplayMessage(f"Error during recognition: {e}")
+    return ""
