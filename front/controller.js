@@ -6,5 +6,11 @@ $(document).ready(function () {
         $(".siri-message li:first").text(message);
         $(".siri-message").textillate('start');
     }
+    // Display Hood
+    eel.expose(DisplayHood)
+    function DisplayHood() {
+        $("#Oval").removeClass("hidden");
+        $("#SiriWave").addClass("hidden");
+    }
 });
 
