@@ -40,4 +40,15 @@ $(document).ready(function () {
         $("#SiriWave").removeClass("hidden");
         eel.allCommands()()
     });
+
+    function doc_keyUp(e){
+        //this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
+        if (e.key == 'j' && e.metaKey) {
+            eel.playassistantsound()
+            $("#Oval").removeClassClass("hidden");
+            $("#SiriWave").addClass("hidden");
+            eel.allCommands()()
+        }
+    }
+    document.addEventListener('keyup', doc_keyUp, false);
 });

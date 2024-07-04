@@ -33,15 +33,19 @@ def takecommand():
 
 @eel.expose
 def allCommands():
-    query = takecommand()
-    print(query)
 
-    if "open" in query:
-        from engine.features import openCommand
-        openCommand(query)
-    elif "on youtube":
-        from engine.features import PlayYoutube
-        PlayYoutube(query)
-    else:
-        print("I don't run")
+    try:
+        query = takecommand()
+        print(query)
+
+        if "open" in query:
+            from engine.features import openCommand
+            openCommand(query)
+        elif "on youtube":
+            from engine.features import PlayYoutube
+            PlayYoutube(query)
+        else:
+            print("I don't run")
+    except:
+        print("error")
     eel.DisplayHood()
