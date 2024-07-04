@@ -39,6 +39,9 @@ def allCommands():
     if "open" in query:
         from engine.features import openCommand
         openCommand(query)
+    elif "on youtube":
+        from engine.features import PlayYoutube
+        PlayYoutube(query)
     else:
         print("I don't run")
     eel.DisplayHood()
