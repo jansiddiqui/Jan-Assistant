@@ -13,7 +13,7 @@ cursor.execute(query)
 query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key, name VARCHAR(100), url VARCHAR(1000))"
 cursor.execute(query)
 
-query = r"INSERT INTO web_command VALUES(null,'gmail', 'https://mail.google.com/mail/u/0/#inbox')"
+query = r"INSERT INTO web_command VALUES(null,'geeksforgeeks', 'https://www.geeksforgeeks.org//')"
 cursor.execute(query)
 conn.commit()
 
