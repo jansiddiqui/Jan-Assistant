@@ -16,3 +16,10 @@ cursor.execute(query)
 query = r"INSERT INTO web_command VALUES(null,'gmail', 'https://mail.google.com/mail/u/0/#inbox')"
 cursor.execute(query)
 conn.commit()
+
+
+# # Testing Module
+# app_name = "android studio"
+# cursor.execute('SELECT path FROM sys_command WHERE name IN (?)', (app_name))
+# results = cursor.fetchall()
+# print(results)
