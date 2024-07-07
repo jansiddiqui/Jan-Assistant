@@ -45,10 +45,45 @@ $(document).ready(function () {
         //this would test for whichever key is 40 (down arrow) and the ctrl key at the same time
         if (e.key == 'j' && e.metaKey) {
             eel.playassistantsound()
-            $("#Oval").removeClassClass("hidden");
+            $("#Oval").removeClass("hidden");
             $("#SiriWave").addClass("hidden");
             eel.allCommands()()
         }
     }
     document.addEventListener('keyup', doc_keyUp, false);
+
+    // Function to Process Assistant Message
+    function PlayAssistant(message) {
+        if (message !== "") {
+            $("#Oval").addClass("hidden");
+            $("#SiriWave").removeClass("hidden");
+            eel.allCommands(message); // Execute the assistant command
+            $("#chatbox").val(""); // Clear the input field
+            $("#MicBtn").removeClass("hidden"); // Show the mic button
+            $("#SendBtn").addClass("hidden"); // Hide the send button
+        }
+    }
+
+    // Function to Show/Hide Buttons Based on Input
+    function ShowHideButton(message) {
+        if (message.length === 0) {
+            $("#MicBtn").removeClass("hidden");
+            $("#SendBtn").addClass("hidden");
+        } else {
+            $("#MicBtn").addClass("hidden");
+            $("#SendBtn").removeClass("hidden");
+        }
+    }
+
+    // Input Field Keyup Event
+    $("#chatbox").keyup(function () {
+        let message = $("#chatbox").val();
+        ShowHideButton(message);
+    });
+
+    // Send Button Click Event
+    $("#SendBtn").click(function () {
+        let message = $("#chatbox").val();
+        PlayAssistant(message);
+    });
 });
