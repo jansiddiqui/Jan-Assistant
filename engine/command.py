@@ -32,11 +32,13 @@ def takecommand():
     return query.lower()
 
 @eel.expose
-def allCommands():
+def allCommands(message=None):
 
     try:
-        query = takecommand()
-        print(query)
+        if message:
+            query = message
+        else:
+            query = takecommand()
 
         if "open" in query:
             from engine.features import openCommand
@@ -63,6 +65,6 @@ def allCommands():
                 whatsApp(contact_no, query, message, name)
         else:
             print("I don't run")
-    except:
-        print("error")
+    except Exception as e:
+        print(f"Error: {e}")
     eel.DisplayHood()

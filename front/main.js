@@ -71,7 +71,7 @@ $(document).ready(function () {
             $("#SendBtn").addClass("hidden");
         } else {
             $("#MicBtn").addClass("hidden");
-            $("#SendBtn").removeClass("hidden");
+            $("#SendBtn").removeClass("hidden"); 
         }
     }
 
@@ -85,5 +85,12 @@ $(document).ready(function () {
     $("#SendBtn").click(function () {
         let message = $("#chatbox").val();
         PlayAssistant(message);
+    });
+    $("#chatbox").keypress(function (e){
+        key = e.which;
+        if(key == 13) {
+            let message = $("#chatbox").val()
+            PlayAssistant(message)
+        }
     });
 });
