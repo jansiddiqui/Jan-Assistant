@@ -16,6 +16,7 @@ from engine.command import speak
 from engine.config import ASSISTANT_NAME
 import pywhatkit as kit
 from engine.helper import extract_yt_term, remove_words
+from hugchat import hugchat
 
 conn = sqlite3.connect("jan.db")
 cursor = conn.cursor()
@@ -153,3 +154,14 @@ def whatsApp(mobile_no, message, flag, name):
 
     pyautogui.hotkey('enter')
     speak(jan_message)
+
+# chat bot 
+def chatBot(query):
+    user_input = query.lower()
+    chatbot = hugchat.ChatBot(cookie_path="engine\cookies.json")
+    id = chatbot.new_conversation()
+    chatbot.change_conversation(id)
+    response =  chatbot.chat(user_input)
+    print(response)
+    speak(response)
+    return response
