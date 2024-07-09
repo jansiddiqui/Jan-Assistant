@@ -86,11 +86,12 @@ $(document).ready(function () {
         let message = $("#chatbox").val();
         PlayAssistant(message);
     });
+    
     $("#chatbox").keypress(function (e){
         key = e.which;
         if(key == 13) {
-            let message = $("#chatbox").val()
-            PlayAssistant(message)
+            let message = $("#chatbox").val();
+            PlayAssistant(message);
         }
     });
 });
